@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>{{ team }}</h2>
+{% if team.won_against.all %}
+<h3>Victoires</h3>
+<table>
+  <thead>
+    <tr>
+      <th class="date">Date</th>
+      <th>Versus</th>
+  </thead>
+  <tbody>
+    {% for victory in team.won_against.all %}
+    <tr>
+      <td class="date">{{ victory.date }}</td>
+      <td><a href="{{ victory.loser.get_absolute_url }}">
+          {{ victory.loser }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% if team.lost_to.all %}
+<h3>Défaites</h3>
+<table>
+  <thead>
+    <tr>
+      <th class="date">Date</th>
+      <th>Versus</th>
+  </thead>
+  <tbody>
+    {% for lost_result in team.lost_to.all %}
+    <tr>
+      <td class="date">{{ lost_result.date }}</td>
+      <td><a href="{{ lost_result.winner.get_absolute_url }}">
+          {{ lost_result.winner }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

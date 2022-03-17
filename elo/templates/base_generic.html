@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    {% block title %}<title>Elo Beach</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+    <div class="toolbar" role="banner">
+      <h1>Elo Beach</h1>
+      <div class="spacer"></div>
+      {% block navbar %}
+      <nav>
+        <a href="{% url 'index' %}">Classements</a>
+        <a href="{% url 'results' 'M' %}">Résultats</a>
+      </nav>
+      {% endblock %}
+    </div>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

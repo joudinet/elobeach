@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Classements</h2>
+<nav>
+  <a href="{% url 'ratings' 'M'%}">Masculin</a>
+  <a href="{% url 'ratings' 'F'%}">Féminin</a>
+  <a href="{% url 'ratings' 'X'%}">Mixte</a>
+</nav>
+{% if ratings %}
+<table class="ranking">
+  <thead>
+    <tr>
+      <th class="rank">Rang</th>
+      <th>Nom</th>
+      <th class="elo">Elo</th>
+      <th class="matches">
+        <span class="short-text">M.</span>
+        <span class="long-text">Matchs</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for team in ratings %}
+    <tr class="{% if team.matches.count > 9 %} reliable {% else %} uncertain {% endif %}">
+      <td>{{ forloop.counter }}</td>
+      <td><a href="{{ team.name.get_absolute_url }}">
+          {{ team.name }}</a></td>
+      <td>{{ team.elo }}</td>
+      <td>{{ team.matches.count }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

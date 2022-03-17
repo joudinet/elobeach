@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Résultats</h2>
+<nav>
+  <a href="{% url 'results' 'M'%}">Masculin</a>
+  <a href="{% url 'results' 'F'%}">Féminin</a>
+  <a href="{% url 'results' 'X'%}">Mixte</a>
+</nav>
+{% if result_list %}
+<table class="results">
+  <thead>
+    <tr>
+      <th class="date">Date</th>
+      <th>Equipe Gagnante</th>
+      <th>Equipe Perdante</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for result in result_list %}
+    <tr class="game">
+      <td class="date">{{ result.date }}</td>
+      <td><a href="{{ result.winner.get_absolute_url }}">
+          {{ result.winner }}</a></td>
+      <td><a href="{{ result.loser.get_absolute_url }}">
+          {{ result.loser }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Aucun résultat.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,142 @@
+body {
+    font-family: sans-serif;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.toolbar {
+    height: 60px;
+    margin: -8px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+}
+
+.toolbar a {
+    padding: 0 1ex;
+    color: white;
+    text-decoration: none;
+}
+
+.toolbar a:hover {
+    color: silver;
+}
+
+.toolbar a.active {
+    text-decoration: underline;
+}
+
+/* tables */
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td {
+    padding: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+th {
+    letter-spacing: 2px;
+}
+
+td {
+    letter-spacing: 1px;
+}
+
+/* ranking table column size */
+th.rank {
+    width: 5em;
+}
+th.score {
+    width: 3.5em;
+}
+th.ci {
+    width: 4em;
+}
+th.matches {
+    width: 4.5em;
+}
+
+th.date {
+    width: 10em;
+}
+
+/* no letter-spacing on dates */
+td.date {
+    letter-spacing: unset;
+}
+
+h2, tbody td {
+    text-align: center;
+}
+
+thead {
+    background-color: grey;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgb(200, 200, 200, .3);
+}
+
+tr.uncertain {
+    display: table-row;
+    font-style: italic;
+    color: orange;
+}
+
+
+/* small size */
+@media screen and (max-width: 959px) {
+    .ratings {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .ratings > * {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    th, td {
+        padding: 4px;
+    }
+}
+
+
+/* xsmall size */
+@media screen and (max-width: 599px) {
+    .ratings > * {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .short-text {
+        display: inline;
+    }
+    .long-text {
+        display: none;
+    }
+
+    th.elo {
+        width: 3em;
+    }
+    th.ci {
+        width: 2.5em;
+    }
+    th.matches {
+        width: 2em;
+    }
+}
