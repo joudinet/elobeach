@@ -16,10 +16,10 @@ Run the followings commands to:
 - create the DB tables
 - run the server
 ```
-pip -r requirements.txt
-python manage.py createsuperuser
-python manage.py makemigrations
+source bin/activate
+pip install -r requirements.txt
 python manage.py migrate
+python manage.py createsuperuser
 python manage.py runserver
 ```
 

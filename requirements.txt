@@ -1,1 +1,2 @@
-whole-history-rating==1.5.1
+mysqlclient>=2.1.0
+whole-history-rating>=1.5.1
