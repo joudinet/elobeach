@@ -24,8 +24,12 @@ def compute_ratings(results):
                 date = first_day + timedelta(days=hist[0])
                 ratings.append([str(date), hist[1] + 1500, hist[2]])
             team = team_names[ordered_ratings[i][0].upper()]
+            p1cat = team.players.first().category.first()
+            p2cat = team.players.last().category.first()
+            cat = str(p1cat) + ' - ' + str(p2cat)
             res.append({
                 'name': team,
+                'cat': cat,
                 'elo': ratings[-1][1],
                 'matches': team.lost_to.all().union(team.won_against.all())
             })

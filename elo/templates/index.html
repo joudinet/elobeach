@@ -18,6 +18,10 @@
         <span class="short-text">M.</span>
         <span class="long-text">Matchs</span>
       </th>
+      <th class="cat">
+        <span class="short-text">Cat.</span>
+        <span class="long-text">Catégories</span>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +32,8 @@
           {{ team.name }}</a></td>
       <td>{{ team.elo }}</td>
       <td>{{ team.matches.count }}</td>
+      <td>{{ team.cat }}</td>
+
     </tr>
     {% endfor %}
   </tbody>

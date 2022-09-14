@@ -72,6 +72,9 @@ th.matches {
 th.date {
     width: 10em;
 }
+.short-text {
+    display: none;
+}
 
 /* no letter-spacing on dates */
 td.date {
