@@ -7,13 +7,16 @@ body {
 }
 
 .toolbar {
-    height: 60px;
     margin: -8px;
     display: flex;
     align-items: center;
     background-color: #1976d2;
     color: white;
     font-weight: 600;
+}
+
+.toolbar h1 {
+    margin: 8px;
 }
 
 .toolbar a {
@@ -32,7 +35,8 @@ body {
 
 /* tables */
 
-table {
+table.ranking,
+table.results {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
@@ -41,17 +45,20 @@ table {
     margin-right: auto;
 }
 
-th, td {
+.ranking th, .ranking td,
+.results th, .results td {
     padding: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-th {
+.ranking th,
+.results th {
     letter-spacing: 2px;
 }
 
-td {
+.ranking td,
+.results td {
     letter-spacing: 1px;
 }
 
@@ -81,17 +88,20 @@ td.date {
     letter-spacing: unset;
 }
 
-h2, tbody td {
+.ranking h2, .ranking tbody td,
+.results h2, .results tbody td {
     text-align: center;
 }
 
-thead {
+.ranking thead,
+.results thead {
     background-color: grey;
     color: white;
     text-shadow: 1px 1px 1px black;
 }
 
-tbody tr:nth-child(odd) {
+.ranking tbody tr:nth-child(odd),
+.results tbody tr:nth-child(odd) {
     background-color: rgb(200, 200, 200, .3);
 }
 
@@ -104,12 +114,12 @@ tr.uncertain {
 
 /* small size */
 @media screen and (max-width: 959px) {
-    .ratings {
+    .ranking {
         margin-left: 0;
         margin-right: 0;
     }
 
-    .ratings > * {
+    .ranking > * {
         margin-left: 8px;
         margin-right: 8px;
     }
@@ -121,7 +131,7 @@ tr.uncertain {
 
 /* xsmall size */
 @media screen and (max-width: 599px) {
-    .ratings > * {
+    .ranking > * {
         margin-left: 4px;
         margin-right: 4px;
     }
