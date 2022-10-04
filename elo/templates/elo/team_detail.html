@@ -4,7 +4,7 @@
 <h2>{{ team }}</h2>
 {% if team.won_against.all %}
 <h3>Victoires</h3>
-<table>
+<table class="results">
   <thead>
     <tr>
       <th class="date">Date</th>
@@ -24,7 +24,7 @@
 
 {% if team.lost_to.all %}
 <h3>Défaites</h3>
-<table>
+<table class="results">
   <thead>
     <tr>
       <th class="date">Date</th>
