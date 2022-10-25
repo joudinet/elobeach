@@ -62,9 +62,9 @@ table.results {
     letter-spacing: 1px;
 }
 
-/* ranking table column size */
+/* ranking table column width */
 th.rank {
-    width: 5em;
+    width: 4em;
 }
 th.score {
     width: 3.5em;
@@ -75,10 +75,14 @@ th.ci {
 th.matches {
     width: 4.5em;
 }
+th.cat {
+    width: 8em;
+}
 
 th.date {
-    width: 10em;
+    width: 8em;
 }
+
 .short-text {
     display: none;
 }
@@ -151,5 +155,11 @@ tr.uncertain {
     }
     th.matches {
         width: 2em;
+    }
+    th.cat {
+        width: 3em;
+    }
+    th.date {
+        width: 5em;
     }
 }
