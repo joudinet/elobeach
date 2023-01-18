@@ -26,17 +26,29 @@
   </thead>
   <tbody>
     {% for team in ratings %}
-    <tr class="{% if team.matches.count > 9 %} reliable {% else %} uncertain {% endif %}">
+    <tr class="{% if team.matches > 9 %} reliable {% else %} uncertain {% endif %}">
       <td>{{ forloop.counter }}</td>
       <td><a href="{{ team.name.get_absolute_url }}">
           {{ team.name }}</a></td>
       <td>{{ team.elo }}</td>
-      <td>{{ team.matches.count }}</td>
+      <td>{{ team.matches }}</td>
       <td>{{ team.cat }}</td>
 
     </tr>
     {% endfor %}
   </tbody>
 </table>
+{{ serialized_ratings|json_script:"ratings-data" }}
+<script type="text/javascript">
+  let ratings = JSON.parse(document.getElementById("ratings-data").textContent);
+  ratings = ratings.map(team => {
+    return {
+      name: team.name,
+      elo: team.elo,
+      faces: JSON.parse(team.faces)
+    };
+  });
+  console.log(ratings);
+</script>
 {% endif %}
 {% endblock %}
