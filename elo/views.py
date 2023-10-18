@@ -54,14 +54,17 @@ def index(request, genre='m'):
     results = Result.objects.filter(genre__exact = genre,
                                     date__gt = START_DATE)
     ratings = compute_ratings(results)
-    context = {
-        'ratings': ratings,
-        'serialized_ratings': [{
-            'name': str(t['name']),
-            'elo': t['elo'],
-            'faces': t['faces']
-        } for t in ratings],
-    }
+    context = { 'ratings': [], 'serialized_ratings': []}
+    if ratings is not None:
+        context = {
+            'ratings': ratings,
+            'serialized_ratings': [{
+                'name': str(t['name']),
+                'elo': t['elo'],
+                'faces': t['faces']
+            } for t in ratings],
+        }
+
 
     return render(request, 'index.html', context=context)
 
