@@ -3,7 +3,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import Result, Team
 from django.views import generic
 from whr import whole_history_rating
-from datetime import timedelta
+from datetime import timedelta, date
+
+START_DATE = date(2023, 10, 1)
 
 class TeamSerializer(Serializer):
     def get_dump_object(self, obj):
@@ -39,7 +41,7 @@ def compute_ratings(results):
                 'name': team,
                 'cat': cat,
                 'elo': ratings[-1][1],
-                'matches': team.lost_to.all().union(team.won_against.all()).count(),
+                'matches': team.lost_to.filter(date__gt=START_DATE).union(team.won_against.filter(date__gt=START_DATE)).count(),
                 'faces': serializer.serialize(Team.objects.filter(
                     pk__in=list(team.lost_to.values_list('winner', flat=True).union(
                         team.won_against.values_list('loser', flat=True)))))
@@ -49,7 +51,8 @@ def compute_ratings(results):
 def index(request, genre='m'):
     """View function for the home page."""
 
-    results = Result.objects.filter(genre__exact=genre)
+    results = Result.objects.filter(genre__exact = genre,
+                                    date__gt = START_DATE)
     ratings = compute_ratings(results)
     context = {
         'ratings': ratings,
@@ -67,7 +70,8 @@ class ResultListView(generic.ListView):
 
     def get_queryset(self):
         self.genre = self.kwargs.get('genre', 'M')
-        return Result.objects.filter(genre = self.genre)
+        return Result.objects.filter(genre = self.genre,
+                                     date__gt = START_DATE)
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
