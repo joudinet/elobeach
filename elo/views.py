@@ -5,7 +5,7 @@ from django.views import generic
 from whr import whole_history_rating
 from datetime import timedelta, date
 
-START_DATE = date(2023, 10, 1)
+START_DATE = date(2024, 10, 1)
 
 class TeamSerializer(Serializer):
     def get_dump_object(self, obj):
